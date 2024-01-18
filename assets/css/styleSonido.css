@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("../imagenes/sonido.png");
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Verdana';
+    font-weight: bold;  
+    color: #000000;
+}
+
+
+.container {
+    margin: 50px auto;
+    width: 750px;
+    background-color: #ffffffe2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Verdana';
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="number"], input[type="doubleval"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+button, a{
+    background-color: #bc1f1f;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+a:hover{
+    background-color: #910404;
+}
+button:hover {
+    background-color: #910404;
+}
+
+.result {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f7f7f7;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}

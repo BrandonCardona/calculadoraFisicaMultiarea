@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campos electromagneticos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="../assets/css/styleOEM.css">
+</head>
+<body>
+ 
+    <div class="container">
+        <h1 class="text-center my-3">CAMPOS ELECTROMAGNETICOS</h1>
+        <div class="formulario">   
+                <form>
+                <div class="mb-3">
+                <label for="frecuencia">Frecuencia (Hz):</label>
+                <input type="doubleval" id="frecuencia" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                  <label for="campo" class="form-label">CAMPO</label>
+                  <select class="form-select prueba" aria-label="Default select example" id="campo" name="campo">
+                  <option value="1">Campo Electrico maximo</option>
+                  <option value="2">Campo Magnetico maximo</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="valorCampo">Valor del campo:</label>
+                  <input type="number" id="valorCampo" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                  <label for="constanteDielectrica">Constante dielectrica de la sustancia:</label>
+                  <input type="doubleval" id="constanteDielectrica" step="0.01" required>
+                </div>
+                <button type="button" onclick="calcular()" class="calcular">Calcular</button>
+                <form>
+                <a href="../calculadora/index.html">Volver</a>
+        </div>
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+		function calcular() {
+			
+			var frecuencia = parseFloat(document.getElementById("frecuencia").value);
+      var tipoCampo = parseFloat(document.getElementById("campo").value);
+      var valorCampo = parseFloat(document.getElementById("valorCampo").value);
+      var constanteDielectrica = parseFloat(document.getElementById("constanteDielectrica").value);
+      var c = 3*10**8;
+      var mu = 4*Math.PI*10**(-7);
+      var epsilon0 = 8.85*10**(-12);
+      
+      if(tipoCampo == 1){
+        var campoContrario = valorCampo/c;
+        //Se calcula un campo magnetico
+        var u = (epsilon0 * valorCampo**2) / 2;
+        //U es la densidad de energia instantanea total
+        var campoMagnetico = campoContrario;
+        var campoElectrico = valorCampo;
+        
+      }else{
+        var campoContrario = c*valorCampo;
+        //Se calcula un campo electrico
+        var u = (epsilon0 * Math.pow(campoContrario, 2)) / 2;
+        var campoMagnetico = valorCampo;
+        var campoElectrico = campoContrario;
+      }
+      
+      var intensidadOnda = (valorCampo*campoContrario)/(2*mu);
+      var longitudOnda = c/frecuencia;
+			var periodo = 1 / frecuencia;
+      var velocidad = 1/Math.sqrt(constanteDielectrica*mu*epsilon0);
+
+			document.getElementById("resultado").innerHTML =
+				"Período: " + periodo + " s" + "<br>" +
+        "Longitud de onda: " + longitudOnda.toFixed(2) + " m" + "<br>" +
+        "Maximo campo Electrico: " + campoElectrico.toFixed(2) + " N/C" + "<br>" +
+        "Maximo campo Magnetico: " + campoMagnetico + " T" + "<br>" +
+				"Intensidad de onda: " + intensidadOnda.toFixed(2) + " W/m^2" + "<br>" +
+        "La velocidad de la onda: " + velocidad.toFixed(2) + " W/m^2" + "<br>" +
+        "Densidad de energia instantanea total: " + u + " J/m^3" + "<br>";
+		}
+	</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+<style>
+  body {
+    background-image: url(../imagenes/gif.gif);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+</style>
+</html>
